@@ -1,1 +1,7 @@
-<p>card-form works!</p>
+<form [formGroup]="cardForm">
+  <input formControlName="name" />
+</form>
+
+<!-- DEBUG: remove blocks below before pushing to prod -->
+<div>Form Contents: {{ cardForm.value | json }}</div>
+<div>Form is valid: {{ cardForm.valid }}</div>
