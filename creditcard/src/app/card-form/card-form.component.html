@@ -1,7 +1,26 @@
 <form [formGroup]="cardForm">
   <input formControlName="name" />
+  <ng-container
+    *ngIf="
+      cardForm.controls['name'].dirty &&
+      cardForm.controls['name'].touched &&
+      cardForm.controls['name'].errors
+    "
+  >
+    <div *ngIf="cardForm.controls['name'].errors['required']">
+      Value is required.
+    </div>
+    <div *ngIf="cardForm.controls['name'].errors['minlength']">
+      Must be at least
+      {{ cardForm.controls["name"].errors["minlength"].requiredLength }}
+      characters long.
+    </div>
+  </ng-container>
 </form>
 
 <!-- DEBUG: remove blocks below before pushing to prod -->
 <div>Form Contents: {{ cardForm.value | json }}</div>
 <div>Form is valid: {{ cardForm.valid }}</div>
+<div>
+  Errors around name field: {{ cardForm.controls["name"].errors | json }}
+</div>
